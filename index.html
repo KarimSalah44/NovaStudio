@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Nova Studio | نوفا ستوديو - وكالة إبداعية متكاملة</title>
+	<meta name="google-site-verification" content="bqZXFd6HgKZM_Vi1KVjP2ssZBnlnoPk7zrT7qbxqY7U" />
+    <title>NovaStudio نوفا ستوديو</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -53,6 +54,21 @@
             box-shadow: 0 20px 35px -12px rgba(139,92,246,0.4);
         }
 
+        /* ===== SERVICE CARD SHADOW ===== */
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
+            box-shadow: 0 8px 32px -4px rgba(139,92,246,0.15), 0 4px 16px rgba(0,0,0,0.4);
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -10px rgba(139,92,246,0.45), 0 8px 24px rgba(0,0,0,0.5);
+        }
+
         .text-gradient {
             background: linear-gradient(135deg, #c084fc, #8b5cf6);
             -webkit-background-clip: text;
@@ -70,7 +86,6 @@
 
         .glow-text { text-shadow: 0 0 15px rgba(139,92,246,0.6); }
 
-        /* ===== FLOATING BUTTONS ANIMATION ===== */
         @keyframes floatBtn {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -87,13 +102,8 @@
         .btn-outline-glow { transition: all 0.3s ease; }
         .btn-outline-glow:hover { box-shadow: 0 0 15px rgba(139,92,246,0.5); transform: translateY(-2px); }
 
-        /* ===== HERO BUTTONS FLOATING ANIMATION ===== */
-        .hero-btn-float {
-            animation: floatBtn 3s ease-in-out infinite;
-        }
-        .hero-btn-float:nth-child(2) {
-            animation-delay: 1.5s;
-        }
+        .hero-btn-float { animation: floatBtn 3s ease-in-out infinite; }
+        .hero-btn-float:nth-child(2) { animation-delay: 1.5s; }
 
         .ripple-btn { position: relative; overflow: hidden; }
         .ripple-btn:after {
@@ -123,7 +133,7 @@
         .partner-item { filter: grayscale(0.5); transition: all 0.3s ease; opacity: 0.7; }
         .partner-item:hover { filter: grayscale(0); opacity: 1; transform: scale(1.05); }
 
-        /* ===== FLOATING BUTTONS (scroll-top + whatsapp) ===== */
+        /* ===== FLOATING BUTTONS ===== */
         .floating-btn {
             position: fixed;
             width: 50px; height: 50px;
@@ -145,7 +155,6 @@
             background: var(--whatsapp);
             color: white; font-size: 24px;
         }
-        /* Float animation only when visible */
         .scroll-top.show, .whatsapp-btn {
             animation: floatBtn 3s ease-in-out infinite;
         }
@@ -298,29 +307,46 @@
         .check-item.disabled { opacity: 0.35; }
         .check-item.disabled i { color: #555; }
 
-        /* ===== MARQUEE TICKER — CONTINUOUS INFINITE SCROLL ===== */
-        .marquee-wrap { overflow: hidden; white-space: nowrap; }
-        .marquee-inner {
-            display: inline-flex;
-            animation: marqueeRTL 30s linear infinite;
-            will-change: transform;
+        /* ===== MARQUEE — ROBUST INFINITE SCROLL ===== */
+        .marquee-outer {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
         }
-        .marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
-        @keyframes marqueeRTL {
+        .marquee-track {
+            display: flex;
+            flex-wrap: nowrap;
+            width: max-content;
+            animation: scrollMarquee 40s linear infinite;
+            will-change: transform;
+            animation-play-state: running !important;
+        }
+        @keyframes scrollMarquee {
             0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
         }
         .marquee-item {
-            display: inline-flex; align-items: center; gap: 10px;
-            margin: 0 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 2rem;
             color: rgba(255,255,255,0.5);
-            font-size: 0.95rem; font-weight: 600;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            font-weight: 600;
             white-space: nowrap;
             flex-shrink: 0;
+            transition: color 0.3s;
         }
         .marquee-item i { color: var(--primary); }
         .marquee-item:hover { color: #fff; }
+        .marquee-sep {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 0.5rem;
+            color: rgba(139,92,246,0.35);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
 
         /* ===== CLOSE BUTTON ===== */
         .close-btn {
@@ -332,30 +358,25 @@
         }
         .close-btn:hover { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.4); }
 
-        /* Floating animation for hero elements */
         @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
         .float-anim { animation: floatY 4s ease-in-out infinite; }
 
-        /* Pulse glow for featured */
         @keyframes pulseGlow {
             0%,100%{ box-shadow: 0 0 20px rgba(139,92,246,0.3); }
             50%{ box-shadow: 0 0 40px rgba(139,92,246,0.6); }
         }
         .pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
 
-        /* Particle dots bg */
         .dots-bg {
             background-image: radial-gradient(rgba(139,92,246,0.12) 1px, transparent 1px);
             background-size: 28px 28px;
         }
 
-        /* Horizontal line gradient */
         .h-line {
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
-        /* Mobile menu overlay */
         .mobile-overlay {
             display: none;
             position: fixed; inset: 0; z-index: 40;
@@ -363,45 +384,34 @@
         }
         .mobile-overlay.active { display: block; }
 
-        /* View project button inside modal */
         .view-project-btn {
-            display: inline-flex; align-items: center; gap-8px;
+            display: inline-flex; align-items: center; gap: 8px;
             background: linear-gradient(45deg, var(--primary-dark), var(--primary));
             color: white; padding: 8px 18px; border-radius: 9999px;
             font-size: 0.8rem; font-weight: 700;
             transition: all 0.3s ease; margin-top: 12px;
-            border: none; cursor: pointer;
+            border: none; cursor: pointer; text-decoration: none;
         }
         .view-project-btn:hover {
             box-shadow: 0 0 15px rgba(139,92,246,0.6);
             transform: translateY(-2px);
         }
+
         .plan-title {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, #7c3aed, #9333ea);
-    color: #fff;
-    padding: 6px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 999px;
-    letter-spacing: 2px;
-    box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4);
-}
-
-/* Pro مميز */
-.plan-title.pro {
-    background: linear-gradient(135deg, #f59e0b, #f97316);
-    box-shadow: 0 5px 25px rgba(249, 115, 22, 0.6);
-}
-
-/* Plus ملكي */
-.plan-title.plus {
-    background: linear-gradient(135deg, #10b981, #059669);
-    box-shadow: 0 5px 25px rgba(16, 185, 129, 0.6);
-}
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: #fff;
+            padding: 6px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 999px;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4);
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -432,7 +442,6 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-gray-900/95 backdrop-blur-lg" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="#home" onclick="toggleMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">الرئيسية</a>
@@ -447,7 +456,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Overlay (click outside to close menu) -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
 
     <!-- Hero Section -->
@@ -468,7 +476,6 @@
             <p class="text-xl md:text-2xl text-gray-300 mb-10 fade-in-up delay-200 font-light">
                 في Nova Studio، نحول أي فكرة أو مشروع من الصفر للقمة.
             </p>
-            <!-- Hero Buttons with floating animation -->
             <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in-up delay-300">
                 <a href="#portfolio" class="hero-btn-float btn-primary text-white px-8 py-4 rounded-full font-bold text-lg ripple-btn inline-block text-center">
                     استكشف أعمالنا <i class="fas fa-arrow-left mr-2"></i>
@@ -492,11 +499,11 @@
         </div>
     </section>
 
-    <!-- Achievements Marquee — Continuous Infinite -->
-    <div class="py-5 bg-black/80 border-y border-white/5" style="overflow:hidden;">
-        <div class="marquee-wrap">
-            <div class="marquee-inner" id="marqueeInner">
-                <!-- items injected by JS (tripled for seamless loop) -->
+    <!-- ===== MARQUEE — ROBUST INFINITE SCROLL ===== -->
+    <div class="py-5 bg-black/80 border-y border-white/5">
+        <div class="marquee-outer">
+            <div class="marquee-track" id="marqueeTrack">
+                <!-- filled by JS -->
             </div>
         </div>
     </div>
@@ -557,7 +564,7 @@
                 <p class="text-gray-400 max-w-2xl mx-auto">نقدم حلولاً متكاملة تغطي كل جوانب مشروعك الرقمي والإبداعي</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                        <i class="fas fa-users text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
@@ -568,7 +575,7 @@
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>كتابة بوستات احترافية</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                         <i class="fas fa-palette text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
@@ -579,7 +586,7 @@
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>بنرات وكروت شخصية</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                         <i class="fas fa-video text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
@@ -590,18 +597,18 @@
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>فيديوهات برومو</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                         <i class="fas fa-globe text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">تصميم وتطوير المواقع</h3>
                     <ul class="text-gray-400 text-sm space-y-2">
-                        <li><i class="fas fa-check text-purple-500 ml-2"></i>مواقع تعريفية ومتاجر وغيرهاا</li>
+                        <li><i class="fas fa-check text-purple-500 ml-2"></i>مواقع تعريفية ومتاجر وغيرها</li>
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>صفحات هبوط (Landing Pages)</li>
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>تحسين SEO وسرعة الأداء</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                         <i class="fas fa-mobile-alt text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
@@ -612,7 +619,7 @@
                         <li><i class="fas fa-check text-purple-500 ml-2"></i>متوافق مع جميع الأجهزة</li>
                     </ul>
                 </div>
-                <div class="glass-card p-8 rounded-2xl group scroll-reveal">
+                <div class="service-card p-8 rounded-2xl group scroll-reveal">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-all">
                         <i class="fas fa-ad text-2xl text-purple-400 group-hover:text-white"></i>
                     </div>
@@ -627,7 +634,7 @@
         </div>
     </section>
 
-    <!-- ===== PORTFOLIO SECTION (6 CATEGORIES) ===== -->
+    <!-- ===== PORTFOLIO SECTION ===== -->
     <section id="portfolio" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
@@ -635,9 +642,7 @@
                 <h2 class="text-4xl font-bold text-white mb-4">أعمالنا <span class="text-gradient">الإبداعية</span></h2>
                 <p class="text-gray-400">اختر الفئة لاستعراض المشاريع</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="categoriesGrid">
-                <!-- Injected by JS -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="categoriesGrid"></div>
             <div class="text-center mt-12">
                 <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-bold inline-block ripple-btn">اطلب عرض مشروعك <i class="fas fa-paper-plane mr-2"></i></a>
             </div>
@@ -682,88 +687,74 @@
         </div>
     </section>
 
-<!-- ===== PRICING SECTION ===== -->
-<section id="pricing" class="py-20 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 scroll-reveal">
-            <span class="text-sm text-purple-400 font-semibold tracking-widest uppercase mb-3 block">الأسعار</span>
-            <h2 class="text-4xl font-bold text-white mb-4">باقاتنا <span class="text-gradient">المميزة</span></h2>
-            <p class="text-gray-400">اختار الباقة اللي هتضاعف مبيعاتك وتكبر البيزنس بتاعك 🚀</p>
+    <!-- ===== PRICING SECTION ===== -->
+    <section id="pricing" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-sm text-purple-400 font-semibold tracking-widest uppercase mb-3 block">الأسعار</span>
+                <h2 class="text-4xl font-bold text-white mb-4">باقاتنا <span class="text-gradient">المميزة</span></h2>
+                <p class="text-gray-400">اختار الباقة اللي هتضاعف مبيعاتك وتكبر البيزنس بتاعك 🚀</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+                <!-- START -->
+                <div class="pricing-card scroll-reveal relative pt-10">
+                    <div class="plan-title">START</div>
+                    <h3 class="text-xl font-bold text-white mb-2 text-center">Start Plan</h3>
+                    <p class="text-gray-400 text-sm mb-6 text-center">بداية قوية لظهورك على السوشيال 🔥</p>
+                    <div class="price-num text-white mb-1">1,200<span class="text-lg text-gray-400"> جنيه</span></div>
+                    <p class="text-gray-500 text-sm mb-6">شهرياً</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة صفحة واحدة</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">12 بوست شهرياً</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصميم 2 صور احترافية (لوجو أو بوستر)</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">2 فيديو إعلان للمكان</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">2 فيديو ريلز</span></div>
+                    </div>
+                    <button onclick="orderPlan('Start Plan - 1,200 جنيه شهرياً')" class="w-full text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn cursor-pointer border-0">ابدأ الآن</button>
+                </div>
+
+                <!-- PRO -->
+                <div class="pricing-card featured pulse-glow scroll-reveal relative pt-10">
+                    <div class="plan-title">PRO</div>
+                    <h3 class="text-xl font-bold text-white mb-2 text-center">Pro Plan</h3>
+                    <p class="text-gray-400 text-sm mb-6 text-center">اختيارك الأفضل للنمو السريع وزيادة الأرباح 💰</p>
+                    <div class="price-num text-white mb-1">2,800<span class="text-lg text-gray-400"> جنيه</span></div>
+                    <p class="text-gray-500 text-sm mb-6">شهرياً</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة منصات السوشيال ميديا</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">20 بوست احترافي شهرياً</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إعلانات ممولة باحتراف</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">5 فيديوهات ريلز</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">4 فيديوهات تصوير احترافي</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصميم 4 صور (لوجو أو تصميمات)</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إنشاء موقع إلكتروني خاص</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تقارير أداء شهرية وتحليل النتائج</span></div>
+                    </div>
+                    <button onclick="orderPlan('Pro Plan - 2,800 جنيه شهرياً')" class="w-full text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn cursor-pointer border-0">ابدأ الآن</button>
+                </div>
+
+                <!-- PLUS -->
+                <div class="pricing-card scroll-reveal relative pt-10">
+                    <div class="plan-title">PLUS</div>
+                    <h3 class="text-xl font-bold text-white mb-2 text-center">Plus Plan</h3>
+                    <p class="text-gray-400 text-sm mb-6 text-center">حل متكامل للسيطرة على السوق 👑</p>
+                    <div class="price-num text-white mb-1">6,500<span class="text-lg text-gray-400"> جنيه</span></div>
+                    <p class="text-gray-500 text-sm mb-6">شهرياً</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة جميع منصات السوشيال</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">محتوى غير محدود (تصميمات)</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إعلانات ممولة + استهداف احترافي</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصوير فيديوهات احترافية</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إنشاء 2 موقع إلكتروني مخصص</span></div>
+                        <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">دعم ومتابعة مستمرة</span></div>
+                    </div>
+                    <button onclick="orderPlan('Plus Plan - 6,500 جنيه شهرياً')" class="w-full text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn cursor-pointer border-0">تواصل معنا</button>
+                </div>
+
+            </div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-
-            <div class="pricing-card scroll-reveal relative pt-10">
-
-    <!-- PLAN NAME -->
-    <div class="plan-title">START</div>
-
-    <h3 class="text-xl font-bold text-white mb-2 text-center">Start Plan</h3>
-    <p class="text-gray-400 text-sm mb-6 text-center">بداية قوية لظهورك على السوشيال 🔥</p>
-                <div class="price-num text-white mb-1">1,200<span class="text-lg text-gray-400"> جنيه</span></div>
-                <p class="text-gray-500 text-sm mb-6">شهرياً</p>
-
-                <div class="space-y-2 mb-8">
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة صفحة واحدة</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">12 بوست شهرياً</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصميم 2 صور احترافية (لوجو أو بوستر)</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">2 فيديو إعلان للمكان</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">2 فيديو ريلز</span></div>
-                </div>
-
-                <a href="#contact" class="block text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn">ابدأ الآن</a>
-            </div>
-
-     <div class="pricing-card featured pulse-glow scroll-reveal relative pt-10">
-
-    <div class="plan-title pro">PRO</div>
-
-    <h3 class="text-xl font-bold text-white mb-2 text-center">Pro Plan</h3>
-                <h3 class="text-xl font-bold text-white mb-2">Pro</h3>
-                <p class="text-gray-400 text-sm mb-6">اختيارك الأفضل للنمو السريع وزيادة الأرباح 💰</p>
-
-                <div class="price-num text-white mb-1">2,800<span class="text-lg text-gray-400"> جنيه</span></div>
-                <p class="text-gray-500 text-sm mb-6">شهرياً</p>
-
-                <div class="space-y-2 mb-8">
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة منصات السوشيال ميديا</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">20 بوست احترافي شهرياً</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إعلانات ممولة باحتراف</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">5 فيديوهات ريلز</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">4 فيديوهات تصوير احترافي</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصميم 4 صور (لوجو أو تصميمات)</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إنشاء موقع إلكتروني خاص</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تقارير أداء شهرية وتحليل النتائج</span></div>
-                </div>
-
-                <a href="#contact" class="block text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn">ابدأ الآن</a>
-            </div>
-
-          <div class="pricing-card scroll-reveal relative pt-10">
-
-    <div class="plan-title plus">PLUS</div>
-
-    <h3 class="text-xl font-bold text-white mb-2 text-center">Plus Plan</h3>
-                <p class="text-gray-400 text-sm mb-6">حل متكامل للسيطرة على السوق 👑</p>
-
-                <div class="price-num text-white mb-1">6,500<span class="text-lg text-gray-400"> جنيه</span></div>
-                <p class="text-gray-500 text-sm mb-6">شهرياً</p>
-
-                <div class="space-y-2 mb-8">
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إدارة جميع منصات السوشيال</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">محتوى غير محدود (تصميمات)</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إعلانات ممولة + استهداف احترافي</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">تصوير فيديوهات احترافية</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">إنشاء 2 موقع إلكتروني مخصص</span></div>
-                    <div class="check-item"><i class="fas fa-check-circle"></i><span class="text-gray-300 text-sm">دعم ومتابعة مستمرة</span></div>
-                </div>
-
-                <a href="#contact" class="block text-center btn-primary text-white py-3 rounded-full font-bold ripple-btn">تواصل معنا</a>
-            </div>
-
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Team Section -->
     <section id="team" class="py-20 bg-black">
@@ -805,7 +796,7 @@
                     </div>
                 </div>
                 <div class="glass-card rounded-2xl p-6 text-center scroll-reveal group">
-                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-4xl font-bold mb-4 group-hover:shadow-lg group-hover:shadow-purple-500/40 transition-all"><i class="fas fa-users text-2xl text-purple-400 group-hover:text-white"></i></div>
+                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-4xl font-bold mb-4 group-hover:shadow-lg group-hover:shadow-purple-500/40 transition-all"><i class="fas fa-chart-line text-4xl text-white"></i></div>
                     <h3 class="text-xl font-bold text-white">أماني محمد</h3>
                     <p class="text-purple-400 text-sm mt-1">خبيرة تسويق رقمي</p>
                     <p class="text-gray-500 text-xs mt-2">+4 سنوات خبرة</p>
@@ -827,25 +818,19 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="glass-card p-6 rounded-2xl scroll-reveal">
-                    <div class="flex mb-3">
-                        <i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i>
-                    </div>
+                    <div class="flex mb-3"><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i></div>
                     <i class="fas fa-quote-right text-purple-400 text-3xl mb-4"></i>
                     <p class="text-gray-300">"تعامل راقٍ وجودة خيالية. أنتجوا لنا هوية بصرية جعلت علامتنا مميزة جداً"</p>
                     <div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-sm">س</div><div><h4 class="font-bold text-white">سارة الخالدي</h4><p class="text-sm text-gray-400">مؤسسة علامة تجارية</p></div></div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl scroll-reveal">
-                    <div class="flex mb-3">
-                        <i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i>
-                    </div>
+                    <div class="flex mb-3"><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i></div>
                     <i class="fas fa-quote-right text-purple-400 text-3xl mb-4"></i>
                     <p class="text-gray-300">"فريق محترف جداً، ساعدونا في تطوير الموقع وزيادة المبيعات بشكل غير مسبوق"</p>
                     <div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-sm">م</div><div><h4 class="font-bold text-white">محمد عصام</h4><p class="text-sm text-gray-400">CEO شركة تك</p></div></div>
                 </div>
                 <div class="glass-card p-6 rounded-2xl scroll-reveal">
-                    <div class="flex mb-3">
-                        <i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i>
-                    </div>
+                    <div class="flex mb-3"><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i></div>
                     <i class="fas fa-quote-right text-purple-400 text-3xl mb-4"></i>
                     <p class="text-gray-300">"إدارة السوشيال ميديا كانت رائعة، تفاعل ومحتوى جذاب زاد متابعيننا 300%"</p>
                     <div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold text-sm">ر</div><div><h4 class="font-bold text-white">ريما الشهراني</h4><p class="text-sm text-gray-400">صاحبة متجر</p></div></div>
@@ -854,7 +839,7 @@
         </div>
     </section>
 
-    <!-- Statistics Section — WHITE numbers -->
+    <!-- Statistics Section -->
     <section id="stats" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -878,7 +863,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section — Closed by default, toggle on click -->
+    <!-- FAQ Section -->
     <section id="faq" class="py-20 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
@@ -973,7 +958,7 @@
                         <div class="space-y-6">
                             <div class="flex items-center space-x-4 space-x-reverse"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-purple-400"><i class="fas fa-envelope"></i></div><span class="text-gray-200">NovaStudio@gmail.com</span></div>
                             <div class="flex items-center space-x-4 space-x-reverse"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-purple-400"><i class="fas fa-phone"></i></div><span class="text-gray-200" dir="ltr">+201282853079</span></div>
-                            <div class="flex items-center space-x-4 space-x-reverse"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-purple-400"><i class="fas fa-map-marker-alt"></i></div><span class="text-gray-200">الغربية ، طنطا</span></div>
+                            <div class="flex items-center space-x-4 space-x-reverse"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-purple-400"><i class="fas fa-map-marker-alt"></i></div><span class="text-gray-200">الغربية، طنطا</span></div>
                         </div>
                         <div class="mt-12"><p class="text-sm text-gray-400 mb-4">تابعنا على</p>
                             <div class="flex space-x-4 space-x-reverse">
@@ -984,11 +969,11 @@
                         </div>
                     </div>
                     <div class="p-10 bg-gray-800/50">
-                        <form class="space-y-6" id="contactForm">
-                            <div><label class="block text-sm font-medium text-gray-400 mb-2">الاسم</label><input type="text" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></div>
-                            <div><label class="block text-sm font-medium text-gray-400 mb-2">البريد الإلكتروني</label><input type="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></div>
+                        <div class="space-y-6" id="contactForm">
+                            <div><label class="block text-sm font-medium text-gray-400 mb-2">الاسم</label><input type="text" id="contactName" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></div>
+                            <div><label class="block text-sm font-medium text-gray-400 mb-2">البريد الإلكتروني</label><input type="email" id="contactEmail" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></div>
                             <div><label class="block text-sm font-medium text-gray-400 mb-2">الخدمة المطلوبة</label>
-                                <select class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition">
+                                <select id="contactService" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition">
                                     <option value="">اختر الخدمة</option>
                                     <option>تصميم جرافيك</option>
                                     <option>تصميم وتطوير مواقع</option>
@@ -999,17 +984,17 @@
                                     <option>باقة متكاملة</option>
                                 </select>
                             </div>
-                            <div><label class="block text-sm font-medium text-gray-400 mb-2">الرسالة</label><textarea rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></textarea></div>
-                            <button type="button" class="w-full btn-primary text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all ripple-btn">إرسال الرسالة <i class="fas fa-paper-plane mr-2"></i></button>
-                        </form>
+                            <div><label class="block text-sm font-medium text-gray-400 mb-2">الرسالة</label><textarea id="contactMsg" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-purple-500 outline-none transition"></textarea></div>
+                            <button type="button" onclick="sendContactToWhatsapp()" class="w-full btn-primary text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all ripple-btn">إرسال الرسالة <i class="fas fa-paper-plane mr-2"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER (from Updated) ===== -->
-    <footer class="bg-black py-12 border-t border-gray-800">
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-purple-500/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
                 <div>
@@ -1033,8 +1018,8 @@
                     <h4 class="text-white font-bold mb-6">تواصل معنا</h4>
                     <ul class="space-y-3 text-gray-400">
                         <li><i class="fas fa-phone ml-2 text-purple-500"></i>+201282853079</li>
-                        <li><i class="fas fa-envelope ml-2 text-purple-500"></i> NovaStudio@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt ml-2 text-purple-500"></i> الغربية، طنطا</li>
+                        <li><i class="fas fa-envelope ml-2 text-purple-500"></i>NovaStudio@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt ml-2 text-purple-500"></i>الغربية، طنطا</li>
                     </ul>
                     <div class="flex gap-3 mt-6">
                         <a href="#" class="w-9 h-9 rounded-full bg-blue-600/20 border border-blue-600/30 flex items-center justify-center hover:bg-blue-600 transition text-blue-400 hover:text-white"><i class="fab fa-facebook-f text-sm"></i></a>
@@ -1043,7 +1028,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+            <div class="pt-8 border-t border-purple-500/30 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-500 text-sm">© 2026 Nova Studio. جميع الحقوق محفوظة.</p>
                 <div class="flex space-x-6 space-x-reverse mt-4 md:mt-0">
                     <a href="#" class="text-gray-500 hover:text-white transition text-sm">سياسة الخصوصية</a>
@@ -1053,17 +1038,15 @@
         </div>
     </footer>
 
-    <!-- ===== FLOATING BUTTONS ===== -->
-    <!-- WhatsApp floating button -->
+    <!-- FLOATING BUTTONS -->
     <a href="https://wa.me/201282853079" target="_blank" class="floating-btn whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <!-- Scroll to top button -->
     <div class="floating-btn scroll-top" id="scrollTopBtn">
         <i class="fas fa-arrow-up text-white text-xl"></i>
     </div>
 
-    <!-- ===== PORTFOLIO MODAL ===== -->
+    <!-- PORTFOLIO MODAL -->
     <div class="modal-overlay" id="portfolioModal" onclick="closeModalOutside(event)">
         <div class="modal-box" id="modalBox">
             <div class="modal-header">
@@ -1073,188 +1056,271 @@
                 </div>
                 <div class="close-btn" onclick="closeModal()"><i class="fas fa-times text-gray-300"></i></div>
             </div>
-            <div class="p-6" id="modalContent">
-                <!-- injected by JS -->
-            </div>
+            <div class="p-6" id="modalContent"></div>
         </div>
     </div>
 
     <script>
-    // ========================
-    // PORTFOLIO DATA — 6 Categories
-    // ========================
-    const categories = [
-        {
-            id: 'graphic',
-            title: 'تصميم الجرافيك',
-            icon: 'fa-palette',
-            cover: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80',
-            count: 12,
-            projects: [
-                { title: 'هوية بصرية متكاملة', desc: 'تصميم شعار وهوية لشركة تقنية ناشئة شاملة كل المطبوعات.', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=80', tags: ['هوية', 'لوجو'], year: '2024' },
-                { title: 'بوستات سوشيال ميديا', desc: 'تصميم قالب كامل لصفحة إنستجرام لمتجر إلكتروني.', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=400&q=80', tags: ['سوشيال', 'تصميم'], year: '2024' },
-                { title: 'تصميم منيو مطعم', desc: 'منيو عصري يبرز جمال الأطباق ويزيد من المبيعات.', img: 'https://images.unsplash.com/photo-1544145945-f904253d0c7b?auto=format&fit=crop&w=400&q=80', tags: ['منيو', 'مطاعم'], year: '2024' },
-                { title: 'مطبوعات تسويقية', desc: 'تصميم بروشور وكتيب تعريفي لشركة عقارية.', img: 'https://picsum.photos/id/56/400/300', tags: ['مطبوعات', 'بروشور'], year: '2023' },
-                { title: 'تصميم عبوات منتجات', desc: 'تصميم تغليف منتجات لعلامة عناية بالبشرة.', img: 'https://picsum.photos/id/201/400/300', tags: ['باكجينج', 'منتجات'], year: '2023' },
-            ]
-        },
-        {
-            id: 'web',
-            title: 'تصميم وتطوير المواقع',
-            icon: 'fa-globe',
-            cover: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-            count: 8,
-            projects: [
-                { title: 'متجر إلكتروني للملابس', desc: 'تجربة تسوق سلسة ومتوافقة مع الموبايل بتصميم عصري.', img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=400&q=80', tags: ['تجارة', 'ووردبريس'], year: '2024' },
-                { title: 'صفحة هبوط لمنتج', desc: 'تصميم يركز على زيادة التحويل والمبيعات.', img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80', tags: ['Landing', 'تحويل'], year: '2024' },
-                { title: 'موقع شركة عقارية', desc: 'منصة إلكترونية مع خاصية البحث المتقدم ولوحة تحكم.', img: 'https://picsum.photos/id/117/400/300', tags: ['عقارات', 'React'], year: '2024' },
-                { title: 'موقع مطعم', desc: 'موقع أنيق لمطعم مأكولات بحرية مع نظام الحجز.', img: 'https://picsum.photos/id/106/400/300', tags: ['مطاعم', 'حجز'], year: '2023' },
-            ]
-        },
-        {
-            id: 'mobile',
-            title: 'تصميم تطبيقات الموبايل',
-            icon: 'fa-mobile-alt',
-            cover: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80',
-            count: 6,
-            projects: [
-                { title: 'تطبيق حجز خدمات', desc: 'واجهة مستخدم بسيطة وعملية لتطبيق حجز متعدد الخدمات.', img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80', tags: ['UI/UX', 'حجز'], year: '2024' },
-                { title: 'تطبيق توصيل طلبات', desc: 'تطبيق أندرويد وiOS لتوصيل طلبات المطاعم مع لوحة تحكم.', img: 'https://picsum.photos/id/121/400/300', tags: ['موبايل', 'Flutter'], year: '2023' },
-                { title: 'تطبيق لياقة بدنية', desc: 'تصميم تطبيق تدريبات شخصية مع تتبع التقدم اليومي.', img: 'https://picsum.photos/id/160/400/300', tags: ['لياقة', 'iOS'], year: '2024' },
-            ]
-        },
-        {
-            id: 'video',
-            title: 'المونتاج وصناعة الفيديوهات',
-            icon: 'fa-video',
-            cover: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80',
-            count: 15,
-            projects: [
-                { title: 'فيديو إعلاني لبراند', desc: 'مونتاج احترافي مع مؤثرات بصرية رائعة لعلامة تجارية.', img: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&q=80', tags: ['إعلاني', 'مونتاج'], year: '2024' },
-                { title: 'ريلز ترويجي مطعم', desc: 'فيديو ريلز جذاب لمطعم مأكولات بحرية، وصل 200K مشاهدة.', img: 'https://picsum.photos/id/292/400/300', tags: ['ريلز', 'سوشيال'], year: '2024' },
-                { title: 'موشن جرافيك تعريفي', desc: 'شرح فكرة مشروعك بطريقة مبسطة ومؤثرة.', img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=400&q=80', tags: ['موشن', 'جرافيك'], year: '2023' },
-            ]
-        },
-        {
-            id: 'social',
-            title: 'إدارة سوشيال ميديا',
-            icon: 'fas fa-users',
-            cover: 'https://picsum.photos/id/180/600/400',
-            count: 20,
-            projects: [
-                { title: 'إدارة إنستجرام مطعم', desc: 'نمو 40K متابع في 6 أشهر مع محتوى منتظم وجذاب.', img: 'https://picsum.photos/id/160/400/300', tags: ['إنستجرام', 'مطاعم'], year: '2024' },
-                { title: 'تيك توك براند أزياء', desc: 'خطة محتوى تيك توك أدت لـ 500K متابع جديد.', img: 'https://picsum.photos/id/169/400/300', tags: ['تيك توك', 'أزياء'], year: '2024' },
-                { title: 'فيسبوك لعيادة طبية', desc: 'بناء مجتمع 15K متابع على فيسبوك وتحسين التفاعل 200%.', img: 'https://picsum.photos/id/180/400/300', tags: ['فيسبوك', 'صحة'], year: '2023' },
-            ]
-        },
-        {
-            id: 'ads',
-            title: 'إعلانات ممولة',
-            icon: 'fa-bullhorn',
-            cover: 'https://picsum.photos/id/240/600/400',
-            count: 15,
-            projects: [
-                { title: 'حملة Meta Ads', desc: 'حملة إعلانية على فيسبوك وإنستجرام بعائد استثمار 5x.', img: 'https://picsum.photos/id/240/400/300', tags: ['Meta', 'إعلانات'], year: '2024' },
-                { title: 'Google Ads متجر', desc: 'حملة جوجل لمتجر إلكتروني أدت لزيادة المبيعات 300%.', img: 'https://picsum.photos/id/250/400/300', tags: ['Google', 'PPC'], year: '2024' },
-                { title: 'تيك توك Ads إطلاق', desc: 'حملة تيك توك لإطلاق منتج جديد وصل 2M ظهور.', img: 'https://picsum.photos/id/260/400/300', tags: ['TikTok', 'إطلاق'], year: '2024' },
-            ]
-        }
-    ];
+    // ============================================================
+    // WHATSAPP PHONE NUMBER — change here only
+    // ============================================================
+    const WA_PHONE = '201282853079';
 
-    // Marquee achievements
+    // ============================================================
+    // PORTFOLIO DATA
+    // To add a project: add an object to any category's projects[]
+    // Fields: title, desc, img, tags[], year, link (optional URL)
+    // ============================================================
+const categories = [
+  {
+    id: 'graphic',
+    title: 'تصميم الجرافيك',
+    icon: 'fa-palette',
+    cover: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80',
+    count: 12,
+    projects: [
+      {
+        title: 'هوية بصرية متكاملة',
+        desc: 'تصميم لبراند بن ربيع الشام.',
+        img: 'https://iili.io/B8Q6ran.jpg',
+        tags: ['هوية','لوجو'],
+        year: '2025',
+        link: 'https://drive.google.com/file/d/1n2ToIDyRRXfbuh-YGIqXp2RGko3211A9/preview'
+      },
+      {
+        title: 'تصميمات شاملة لمطعم مشويات',
+        desc: 'تصميم لوجوهات ومينو وصور وعروض لمطعم مشويات سي عضمه ',
+        img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=400&q=80',
+        tags: ['تصميمات شاملة','لوجو','عروض','منيو'],
+        year: '2025',
+        link: 'https://drive.google.com/file/d/EXAMPLE1/preview'
+      },
+      {
+        title: 'تصميم منيو مطعم',
+        desc: 'منيو عصري وجديد يبرز مطعمك ويزيد من المبيعات.',
+        img: 'https://images.unsplash.com/photo-1544145945-f904253d0c7b?auto=format&fit=crop&w=400&q=80',
+        tags: ['منيو','مطاعم'],
+        year: '2024',
+        link: 'https://drive.google.com/file/d/EXAMPLE2/preview'
+      }
+    ]
+  },
+
+  {
+    id: 'web',
+    title: 'تصميم وتطوير المواقع',
+    icon: 'fa-globe',
+    cover: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
+    count: 8,
+    projects: [
+      {
+        title: 'ويب سايت لشركة Eaststock ',
+        desc: 'ويب سايت بطاقة تعريفة لشركة است استوك بتصميم عصري جذاب بها بيانات التواصل للشركة. ',
+        img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=400&q=80',
+        tags: ['ويب سايت','بطاقة تعريفة '],
+        year: '2026',
+        link: 'https://eaststock1.netlify.app/'
+      },
+      {
+        title: 'ويب سايت براند  Outlet tanta ',
+          desc: 'ويب سايت بطاقة تعريفة لبراند ملابس اوت ليت بتصميم جذاب بها بيانات التواصل للبراند. ',
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80',
+        tags: ['ويب سايت','بطاقة تعريفة '],
+        year: '2025',
+        link: 'https://pageoutlettanta.netlify.app/'
+      }
+    ]
+  },
+
+  {
+    id: 'mobile',
+    title: 'تصميم تطبيقات الموبايل',
+    icon: 'fa-mobile-alt',
+    cover: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80',
+    count: 6,
+    projects: [
+      {
+        title: 'تطبيق حجز صالون حلاقة',
+        desc: 'تطبيق حجز مواعيد حلاقة رجالي بتصميم انيق والوان احترافية مناسبة لشعار المحل',
+        img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80',
+        tags: ['UI/UX','حجز'],
+        year: '2025',
+        link: 'https://drive.google.com/file/d/EXAMPLE3/preview'
+      }
+    ]
+  },
+
+  {
+    id: 'video',
+    title: 'المونتاج وصناعة الفيديوهات',
+    icon: 'fa-video',
+    cover: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80',
+    count: 15,
+    projects: [
+      {
+        title: 'فيديو إعلاني لبراند',
+        desc: 'مونتاج احترافي مع مؤثرات بصرية رائعة.',
+        img: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&q=80',
+        tags: ['إعلاني','مونتاج'],
+        year: '2024',
+        link: 'https://drive.google.com/file/d/EXAMPLE4/preview'
+      }
+    ]
+  },
+
+  {
+    id: 'social',
+    title: 'إدارة سوشيال ميديا',
+    icon: 'fa-users',
+    cover: 'https://picsum.photos/id/180/600/400',
+    count: 20,
+    projects: [
+      {
+        title: 'إدارة إنستجرام مطعم',
+        desc: 'نمو 40K متابع في 6 أشهر.',
+        img: 'https://picsum.photos/id/160/400/300',
+        tags: ['إنستجرام','مطاعم'],
+        year: '2024',
+        link: 'https://drive.google.com/file/d/EXAMPLE5/preview'
+      }
+    ]
+  },
+
+  {
+    id: 'ads',
+    title: 'إعلانات ممولة',
+    icon: 'fa-bullhorn',
+    cover: 'https://picsum.photos/id/240/600/400',
+    count: 15,
+    projects: [
+      {
+        title: 'حملة Meta Ads',
+        desc: 'ROI وصل لـ 5x.',
+        img: 'https://picsum.photos/id/240/400/300',
+        tags: ['Meta','إعلانات'],
+        year: '2024',
+        link: 'https://drive.google.com/file/d/EXAMPLE6/preview'
+      }
+    ]
+  }
+];
+
+    // ============================================================
+    // MARQUEE — robust infinite scroll, works on all screen sizes
+    // ============================================================
     const achievements = [
-        { icon: 'fa-trophy', text: 'وكالة العام 2024' },
-        { icon: 'fa-star', text: '+587 مشروع ناجح' },
-        { icon: 'fa-users', text: '+125 عميل راضٍ' },
-        { icon: 'fa-thumbs-up', text: '98% نسبة رضا' },
-        { icon: 'fa-certificate', text: 'شريك Google معتمد' },
-        { icon: 'fa-rocket', text: '4+ سنوات خبرة' },
-        { icon: 'fa-chart-line', text: '300% نمو للعملاء' },
-        { icon: 'fa-clock', text: 'تسليم في الموعد دائماً' },
+        { icon: 'fa-trophy',     text: 'وكالة العام 2024'          },
+        { icon: 'fa-star',       text: '+587 مشروع ناجح'           },
+        { icon: 'fa-users',      text: '+125 عميل راضٍ'            },
+        { icon: 'fa-thumbs-up',  text: '98% نسبة رضا'              },
+        { icon: 'fa-certificate',text: 'شريك Google معتمد'         },
+        { icon: 'fa-rocket',     text: '4+ سنوات خبرة'             },
+        { icon: 'fa-chart-line', text: '300% نمو للعملاء'          },
+        { icon: 'fa-clock',      text: 'تسليم في الموعد دائماً'    },
     ];
 
-    // ========================
-    // BUILD MARQUEE — tripled for seamless infinite scroll
-    // ========================
     function buildMarquee() {
-        const inner = document.getElementById('marqueeInner');
-        // Triple the items so the loop is always seamless regardless of screen size
-        const items = [...achievements, ...achievements, ...achievements];
-        inner.innerHTML = items.map(a => `
-            <span class="marquee-item">
-                <i class="fas ${a.icon}"></i> ${a.text}
-                <span style="color:rgba(139,92,246,0.3);margin-right:1rem">✦</span>
-            </span>
-        `).join('');
-        // Set animation to move exactly 1/3 of total width for seamless loop
-        inner.style.animation = 'none';
-        inner.offsetHeight; // reflow
-        inner.style.animation = 'marqueeRTL 35s linear infinite';
+        const track = document.getElementById('marqueeTrack');
+        // Build one set of items
+        function makeItems() {
+            return achievements.map(a =>
+                `<span class="marquee-item"><i class="fas ${a.icon}"></i>${a.text}</span><span class="marquee-sep">✦</span>`
+            ).join('');
+        }
+        // Duplicate for seamless loop — first half animates, second is clone
+        track.innerHTML = makeItems() + makeItems();
     }
 
-    // ========================
-    // BUILD PORTFOLIO CATEGORIES
-    // ========================
+    // ============================================================
+    // PLAN ORDER → WhatsApp
+    // ============================================================
+    function orderPlan(planName) {
+        const msg = encodeURIComponent(`مرحباً، أنا عايز أطلب ${planName}`);
+        window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank');
+    }
+
+    // ============================================================
+    // CONTACT FORM → WhatsApp
+    // ============================================================
+    function sendContactToWhatsapp() {
+        const name    = document.getElementById('contactName').value.trim();
+        const email   = document.getElementById('contactEmail').value.trim();
+        const service = document.getElementById('contactService').value;
+        const msg     = document.getElementById('contactMsg').value.trim();
+
+        if (!name && !msg) {
+            alert('من فضلك اكتب اسمك ورسالتك أولاً');
+            return;
+        }
+
+        let text = `مرحباً، أنا ${name || 'عميل جديد'} من موقع Nova Studio\n`;
+        if (email)   text += `البريد: ${email}\n`;
+        if (service) text += `الخدمة المطلوبة: ${service}\n`;
+        if (msg)     text += `الرسالة: ${msg}`;
+
+        window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ============================================================
+    // BUILD PORTFOLIO CATEGORY CARDS
+    // ============================================================
     function buildCategories() {
         const grid = document.getElementById('categoriesGrid');
         grid.innerHTML = categories.map((cat, i) => `
             <div class="portfolio-cat-card scroll-reveal" style="animation-delay:${i*0.08}s" onclick="openModal('${cat.id}')">
-                <div style="height:220px; overflow:hidden;">
-                    <img src="${cat.cover}" alt="${cat.title}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;" 
+                <div style="height:220px;overflow:hidden;">
+                    <img src="${cat.cover}" alt="${cat.title}" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;"
                          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
                 </div>
                 <div class="cat-overlay"></div>
-                <div class="cat-icon">
-                    <i class="fas ${cat.icon} text-white text-sm"></i>
-                </div>
+                <div class="cat-icon"><i class="fas ${cat.icon} text-white text-sm"></i></div>
                 <div class="cat-info">
                     <div class="cat-count">${cat.count} مشروع</div>
                     <h3 class="text-white font-bold text-lg">${cat.title}</h3>
-                    <p class="text-purple-300 text-xs mt-1 flex items-center gap-1">
-                        <i class="fas fa-arrow-left text-xs"></i> اضغط لاستعراض الأعمال
-                    </p>
+                    <p class="text-purple-300 text-xs mt-1 flex items-center gap-1"><i class="fas fa-arrow-left text-xs"></i> اضغط لاستعراض الأعمال</p>
                 </div>
             </div>
         `).join('');
         reObserve();
     }
 
-    // ========================
+    // ============================================================
     // MODAL
-    // ========================
+    // ============================================================
     function openModal(catId) {
         const cat = categories.find(c => c.id === catId);
         if (!cat) return;
         document.getElementById('modalTitle').textContent = cat.title;
         document.getElementById('modalSubtitle').textContent = `${cat.projects.length} مشروع معروض من أصل ${cat.count}`;
+
         document.getElementById('modalContent').innerHTML = `
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                ${cat.projects.map(p => `
+                ${cat.projects.map(p => {
+                    const linkBtn = p.link
+                        ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" class="view-project-btn"><i class="fas fa-external-link-alt ml-2"></i> مشاهدة المشروع</a>`
+                        : `<button onclick="orderProject('${p.title.replace(/'/g,"\\'")}','${cat.title.replace(/'/g,"\\'")}'); event.stopPropagation();" class="view-project-btn"><i class="fas fa-whatsapp ml-2"></i> اطلب مشروع مشابه</button>`;
+                    return `
                     <div class="project-card group">
-                        <div class="proj-img">
-                            <img src="${p.img}" alt="${p.title}" loading="lazy">
-                        </div>
+                        <div class="proj-img"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
                         <div class="p-4">
                             <div class="flex flex-wrap gap-1.5 mb-2">
-                                ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                                ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
                                 <span class="tag" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:#9ca3af">${p.year}</span>
                             </div>
                             <h3 class="text-white font-bold text-base mb-1">${p.title}</h3>
                             <p class="text-gray-400 text-sm leading-relaxed mb-3">${p.desc}</p>
-                            <button class="view-project-btn" onclick="event.stopPropagation()">
-                                <i class="fas fa-eye ml-2"></i> مشاهدة المشروع
-                            </button>
+                            ${linkBtn}
                         </div>
-                    </div>
-                `).join('')}
-                <!-- Call to action card -->
+                    </div>`;
+                }).join('')}
+                <!-- CTA card -->
                 <div class="project-card flex flex-col items-center justify-center p-8 text-center" style="border:1px dashed rgba(139,92,246,0.35);background:rgba(139,92,246,0.04);">
                     <div class="w-14 h-14 rounded-full bg-purple-600/20 flex items-center justify-center mb-4">
                         <i class="fas fa-plus text-purple-400 text-xl"></i>
                     </div>
                     <p class="text-gray-300 font-bold mb-2">عايز مشروع زي ده؟</p>
                     <p class="text-gray-500 text-sm mb-4">تكلمنا وسنساعدك في تحقيق رؤيتك</p>
-                    <a href="#contact" onclick="closeModal()" class="btn-primary text-white text-sm px-5 py-2 rounded-full ripple-btn">ابدأ مشروعك</a>
+                    <a href="#contact" onclick="closeModal()" class="btn-primary text-white text-sm px-5 py-2 rounded-full ripple-btn inline-block">ابدأ مشروعك</a>
                 </div>
             </div>
         `;
@@ -1262,25 +1328,28 @@
         document.body.style.overflow = 'hidden';
     }
 
+    // When project has no link, open WhatsApp inquiry
+    function orderProject(projectTitle, catTitle) {
+        const msg = encodeURIComponent(`مرحباً، أنا مهتم بمشروع مشابه لـ "${projectTitle}" من قسم ${catTitle}`);
+        window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank');
+    }
+
     function closeModal() {
         document.getElementById('portfolioModal').classList.remove('open');
         document.body.style.overflow = '';
     }
-
     function closeModalOutside(e) {
         if (e.target === document.getElementById('portfolioModal')) closeModal();
     }
-
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // ========================
-    // MOBILE MENU — close on outside click
-    // ========================
+    // ============================================================
+    // MOBILE MENU
+    // ============================================================
     function toggleMenu() {
         const menu = document.getElementById('mobile-menu');
         const overlay = document.getElementById('mobileOverlay');
-        const isHidden = menu.classList.contains('hidden');
-        if (isHidden) {
+        if (menu.classList.contains('hidden')) {
             menu.classList.remove('hidden');
             overlay.classList.add('active');
         } else {
@@ -1288,27 +1357,25 @@
             overlay.classList.remove('active');
         }
     }
-
     function closeMobileMenu() {
         document.getElementById('mobile-menu').classList.add('hidden');
         document.getElementById('mobileOverlay').classList.remove('active');
     }
 
-    // ========================
+    // ============================================================
     // FAQ TOGGLE
-    // ========================
+    // ============================================================
     window.toggleFaq = function(element) {
         const item = element.closest('.faq-item');
-        // Close all other open items
         document.querySelectorAll('.faq-item.active').forEach(openItem => {
             if (openItem !== item) openItem.classList.remove('active');
         });
         item.classList.toggle('active');
     };
 
-    // ========================
+    // ============================================================
     // SMOOTH SCROLL
-    // ========================
+    // ============================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1317,23 +1384,23 @@
         });
     });
 
-    // ========================
+    // ============================================================
     // SCROLL REVEAL
-    // ========================
+    // ============================================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) { entry.target.classList.add('revealed'); revealObserver.unobserve(entry.target); }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     function reObserve() {
         document.querySelectorAll('.scroll-reveal:not(.revealed)').forEach(el => revealObserver.observe(el));
     }
     reObserve();
 
-    // ========================
+    // ============================================================
     // COUNTERS
-    // ========================
+    // ============================================================
     let countersStarted = false;
     const statsSection = document.querySelector('#stats');
     const startCounters = () => {
@@ -1352,16 +1419,16 @@
     };
     new IntersectionObserver((e) => { if (e[0].isIntersecting) startCounters(); }, { threshold: 0.3 }).observe(statsSection);
 
-    // ========================
+    // ============================================================
     // SCROLL TO TOP
-    // ========================
+    // ============================================================
     const scrollBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => scrollBtn.classList.toggle('show', window.scrollY > 500));
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // ========================
+    // ============================================================
     // INIT
-    // ========================
+    // ============================================================
     buildMarquee();
     buildCategories();
     </script>
